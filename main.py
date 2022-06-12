@@ -13,6 +13,7 @@ class Bebrik:
         self.car = car
         self.money = 100
         self.gladness = 50
+        self.zavisimost = 50
         self.satiety = 50
 
     def get_home(self):
@@ -102,6 +103,7 @@ class Bebrik:
         print(f"Money – {self.money}")
         print(f"Satiety – {self.satiety}")
         print(f"Gladness – {self.gladness}")
+        print(f"Zavisimost – {self.zavisimost}")
         home_indexes = "Home indexes"
         print(f"{home_indexes:^50}", "\n")
         print(f"Food – {self.home.food}")
@@ -110,6 +112,7 @@ class Bebrik:
         print(f"{car_indexes:^50}", "\n")
         print(f"Fuel – {self.car.fuel}")
         print(f"Strength – {self.car.strength}")
+
 
     def is_alive(self):
         if self.gladness < 0:
@@ -123,6 +126,10 @@ class Bebrik:
         if self.money < -500:
             print("Bankrupt…")
             logging.warning('bankrupt')
+            return False
+        if self.zavisimost > 90:
+            print("Igromaniya...")
+            logging.critical('igromania')
             return False
 
     def live(self, day):
@@ -222,10 +229,10 @@ class Job:
 
 
 game_list = {
-    "CS:GO": {"zavisimost": 50, "gladness_less": 10},
-    "Fortnite": {"zavisimost": 40, "gladness_less": 3},
-    "Dota 2": {"zavisimost": 45, "gladness_less": 25},
-    "Rust": {"zavisimost": 70, "gladness_less": 1}
+    "CS:GO": {"zavisimost": 60, "gladness_less": 25},
+    "Fortnite": {"zavisimost": 90, "gladness_less": 34},
+    "Dota 2": {"zavisimost": 50, "gladness_less": 1},
+    "Rust": {"zavisimost": 120, "gladness_less": 25}
 }
 
 
@@ -237,6 +244,7 @@ class Game:
 
 
 nick = Bebrik(name="Bababoi")
+
 
 for day in range(1, 8):
     if nick.live(day) == False:
